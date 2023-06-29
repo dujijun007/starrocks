@@ -182,8 +182,9 @@ Status UpdateManager::_do_update(uint32_t rowset_id, int32_t upsert_idx, const s
 }
 
 Status UpdateManager::_do_update_with_condition(Tablet* tablet, const TabletMetadata& metadata,
-                                                const TxnLogPB_OpWrite& op_write, const TabletSchemaCSPtr& tablet_schema,
-                                                uint32_t rowset_id, int32_t upsert_idx, int32_t condition_column,
+                                                const TxnLogPB_OpWrite& op_write,
+                                                const TabletSchemaCSPtr& tablet_schema, uint32_t rowset_id,
+                                                int32_t upsert_idx, int32_t condition_column,
                                                 const std::vector<ColumnUniquePtr>& upserts, PrimaryIndex& index,
                                                 int64_t tablet_id, DeletesMap* new_deletes) {
     CHECK(condition_column >= 0);
