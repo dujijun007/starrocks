@@ -1151,7 +1151,8 @@ void TabletUpdates::_apply_normal_rowset_commit(const EditVersionInfo& version_i
     int64_t full_row_size = 0;
     int64_t full_rowset_size = 0;
     if (rowset->rowset_meta()->get_meta_pb().delfile_idxes_size() == 0) {
-        for (uint32_t i = 0; i < rowset->num_segments(); i++) {
+        // we could update multiple segment once a time to reduce disk io
+	for (uint32_t i = 0; i < rowset->num_segments(); i++) {
             state.load_upserts(rowset.get(), i);
             auto& upserts = state.upserts();
             if (upserts[i] != nullptr) {
